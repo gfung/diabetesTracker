@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <form class="form" action="/uploadData" method="post" id="sugarData">
+            <div class='form-group'>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <label for="date" class='label'>Date</label>
+                        <input type="date" name="date" id="date" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <label for="time">Time</label>
+                        <input type="local" name="time" id="time" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <label for="measurement">Before</label>
+                        <input type='radio' name="timing" value="before" checked>
+                        <label for="measurement">After</label>
+                        <input type='radio' name="timing" value="after" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <label for="amount">Amount</label>
+                        <input type="number" name='amount' class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <label for="measurement">measurement</label>
+                        <select name='measurement' class="form-control">
+                            <option selected value="mg/dL">mg/dL</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <button type='submit' class='btn btn-primary'>Submit Data</button>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById('date').valueAsDate = new Date()
+    document.getElementById('time').value = new Date().toLocaleTimeString()
+</script>

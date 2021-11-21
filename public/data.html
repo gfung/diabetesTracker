@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <!-- axios cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Before/After</th>
+                </tr>
+            </thead>
+            <tbody id="tableData">
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<script>
+    (async () => {
+        let data = await axios.post('/data');
+        // let dailyData = await axios.post('/data/daily')
+        
+        for (let i = 0; i < data.data.length; i++) {
+            // create table
+            let theDate = new Date(data.data[i].entrydate);
+            let beforeAfter;
+            let before = data.data[i].meal ? "Before" : "After"
+            let tableString = `<td scope="row">${theDate.toDateString()}</td><td scope="row">${theDate.toLocaleTimeString()}</td><td>${data.data[i].amount}</td><td>${before}</td>`
+            let newRow = document.createElement('tr')
+            newRow.innerHTML = tableString;
+            document.getElementById('tableData').appendChild(newRow)
+            // measurement average calc
+            // daily
+            let daily = []
+            if (daily.length < 1) {
+                daily.push({
+                    date: theDate.toDateString(),
+                    avg : data.data[i].amount
+                })
+            }
+            // weekly
+            // 2month
+            // 3month
+            // 6 month
+            // yearly
+        }
+    })()
+</script>
